@@ -34,7 +34,6 @@ export default defineNuxtConfig({
 
 ## How to use
 
-## Example
 
 ```html
 <template>
