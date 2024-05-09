@@ -1,0 +1,6 @@
+# ignore modules nad packages
+src
+node_modules
+test
+playground
+.editorconfig
