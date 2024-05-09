@@ -2,24 +2,30 @@
 Get your module up and running quickly.
 
 Find and replace all on all files (CMD+SHIFT+F):
-- Name: Nuxt DataState
+- Name: My Module
 - Package name: nuxt-data-state
 - Description: My new Nuxt module
 -->
 
-# nuxt-data-state
+# My Module
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-Simple state class helper
+My new Nuxt module for doing amazing things.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 <!-- - [🏀 Online playground](https://stackblitz.com/github/zenozaga/nuxt-data-state?file=playground%2Fapp.vue) -->
 <!-- - [📖 &nbsp;Documentation](https://example.com) -->
- 
+
+## Features
+
+<!-- Highlight some of the features your module provide here -->
+- ⛰ &nbsp;Foo
+- 🚠 &nbsp;Bar
+- 🌲 &nbsp;Baz
 
 ## Quick Setup
 
@@ -27,62 +33,52 @@ Install the module to your Nuxt application with one command:
 
 ```bash
 npx nuxi module add nuxt-data-state
-
-or
-
-yarn add nuxt-data-state
 ```
 
-```ts
-// nuxt.config.ts
-// Nuxt 3
-
-import { defineNuxtConfig } from 'nuxt'
-
-export default defineNuxtConfig({
-  // This will also enable auto-imports of magic-regexp helpers
-  modules: ['nuxt-data-state'],
-})
-```
-
-## How to use
+That's it! You can now use My Module in your Nuxt app ✨
 
 
-```html
-<template>
-  <div>
-    <DataStateProvider :state="user">
-      <template #loading>
-        <div>Loading...</div>
-      </template>
-      <template #error="{ error }">
-        <div>Error: {{ error }}</div>
-      </template>
-      <template #success="{ data }">
-        <div>User: {{ data.name }}</div>
-      </template>
-    </DataStateProvider>
-  </div>
-</template>
- 
-<script setup lang="ts">
+## Contribution
 
-type User = {
-    name:string
-}
+<details>
+  <summary>Local development</summary>
+  
+  ```bash
+  # Install dependencies
+  npm install
+  
+  # Generate type stubs
+  npm run dev:prepare
+  
+  # Develop with the playground
+  npm run dev
+  
+  # Build the playground
+  npm run dev:build
+  
+  # Run ESLint
+  npm run lint
+  
+  # Run Vitest
+  npm run test
+  npm run test:watch
+  
+  # Release new version
+  npm run release
+  ```
+
+</details>
 
 
-const user = ref<DataState<User>>(DataState.loading());
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-data-state/latest.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-version-href]: https://npmjs.com/package/nuxt-data-state
 
-onMounted(() => {
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-data-state.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-href]: https://npmjs.com/package/nuxt-data-state
 
-    setTimeout(function(){
-        user.value = DataState.success({
-            name: "User "+ Date.now()
-        })
-    },2000)
+[license-src]: https://img.shields.io/npm/l/nuxt-data-state.svg?style=flat&colorA=020420&colorB=00DC82
+[license-href]: https://npmjs.com/package/nuxt-data-state
 
-})
-    
-</script>
-```
+[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
+[nuxt-href]: https://nuxt.com
