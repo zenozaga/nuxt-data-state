@@ -1,3 +1,12 @@
+<!--
+Get your module up and running quickly.
+
+Find and replace all on all files (CMD+SHIFT+F):
+- Name: Nuxt DataState
+- Package name: nuxt-data-state
+- Description: My new Nuxt module
+-->
+
 # nuxt-data-state
 
 [![npm version][npm-version-src]][npm-version-href]
@@ -5,7 +14,11 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-My new Nuxt module for doing amazing things.
+Simple state class helper
+
+- [✨ &nbsp;Release Notes](/CHANGELOG.md)
+<!-- - [🏀 Online playground](https://stackblitz.com/github/zenozaga/nuxt-data-state?file=playground%2Fapp.vue) -->
+<!-- - [📖 &nbsp;Documentation](https://example.com) -->
  
 
 ## Quick Setup
