@@ -74,7 +74,12 @@ type User = {
 }
 
 
-const user = ref<DataState<User>>(DataState.loading());
+const user = useDataStateLoading<User>();
+
+// or
+// const user = ref<DataState<User>>(DataState.loading());
+
+
 
 onMounted(() => {
 
