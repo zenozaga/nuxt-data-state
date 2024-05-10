@@ -15,7 +15,7 @@ const useDataStateError = <T extends any>(error: Error): DataState<T> => DataSta
 
 
 export {
-    useDataState,
+    useDataStateLoading,
     useDataStateSuccess,
     useDataStateError,
     DataState,
