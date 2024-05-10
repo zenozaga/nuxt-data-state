@@ -50,25 +50,27 @@ export default defineNuxtConfig({
 
 ```html
 <template>
-  <div>
-    <DataStateProvider :state="user">
-      <template #loading>
-        <div>Loading...</div>
-      </template>
-      <template #error="{ error }">
-        <div>Error: {{ error }}</div>
-      </template>
-      <template #success="{ data }">
-        <div>User: {{ data.name }}</div>
-      </template>
-    </DataStateProvider>
-  </div>
+    <div>
+        <DataStateProvider :state="user">
+            <template #loading>
+                <div>Loading...</div>
+            </template>
+            <template #error="{ error }">
+                <div>Error: {{ error }}</div>
+            </template>
+            <template #success="{ data }">
+                <div>User: {{ data.name }}</div>
+            </template>
+        </DataStateProvider>
+    </div>
 </template>
- 
+
 <script setup lang="ts">
+import { DataState } from '#imports';
+
 
 type User = {
-    name:string
+    name: string
 }
 
 
@@ -76,14 +78,14 @@ const user = ref<DataState<User>>(DataState.loading());
 
 onMounted(() => {
 
-    setTimeout(function(){
+    setTimeout(function () {
         user.value = DataState.success({
-            name: "User "+ Date.now()
+            name: "User " + Date.now()
         })
-    },2000)
+    }, 2000)
 
 })
-    
+
 </script>
 ```
 
