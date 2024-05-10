@@ -1,11 +1,25 @@
 // Import DataState and DataStateSuccess from types
-import { DataState, DataStateSuccess } from "../types";
+import { DataState, DataStateSuccess, DataStateError, DataStateLoading } from "../types";
+
+
 
 // Function to create a loading DataState
-export const useDataState = <T extends any>(data: T): DataState<T> => DataState.loading();
+const useDataStateLoading = <T extends any>(): DataState<T> => DataState.loading();
 
 // Function to create a success DataState
-export const useDataStateSuccess = <T extends any>(data: T): DataStateSuccess<T> => DataState.success(data);
+const useDataStateSuccess = <T extends any>(data: T): DataStateSuccess<T> => DataState.success(data);
 
 // Function to create an error DataState
-export const useDataStateError = <T extends any>(error: Error): DataState<T> => DataState.error(error);
+const useDataStateError = <T extends any>(error: Error): DataState<T> => DataState.error(error);
+
+
+
+export {
+    useDataState,
+    useDataStateSuccess,
+    useDataStateError,
+    DataState,
+    DataStateSuccess,
+    DataStateError,
+    DataStateLoading
+}
