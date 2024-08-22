@@ -1,6 +1,6 @@
 {
   "name": "nuxt-data-state",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "My new Nuxt module",
   "repository": "zenozaga/nuxt-data-state",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint .",
+    "format": "eslint --fix .",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit",
@@ -38,12 +39,12 @@
     "@nuxt/module-builder": "^0.6.0",
     "@nuxt/schema": "^3.11.2",
     "@nuxt/test-utils": "^3.12.1",
-    "@types/node": "^20.12.11",
+    "@types/node": "22.5.0",
     "changelogen": "^0.5.5",
     "eslint": "^9.2.0",
     "nuxt": "^3.11.2",
-    "typescript": "latest",
-    "vitest": "^1.6.0",
+    "typescript": "5.4.5",
+    "vitest": "2.0.5",
     "vue-tsc": "^2.0.16"
   }
 }
