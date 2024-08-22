@@ -66,7 +66,7 @@ export default defineNuxtConfig({
 </template>
 
 <script setup lang="ts">
-import { DataState } from '#imports';
+// import { DataState } from '#imports';
 
 
 type User = {
