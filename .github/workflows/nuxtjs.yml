@@ -70,12 +70,16 @@ jobs:
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Prepare Nuxt Module
+        run: ${{ steps.detect-package-manager.outputs.manager }} run dev:prepare
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
+      - name: Fix href in index.html
+        run: sed -i 's#="/#="./#g' ./playground/dist/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./playground/dist
 
   # Deployment job
   deploy:
