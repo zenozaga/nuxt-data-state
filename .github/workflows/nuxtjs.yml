@@ -75,7 +75,7 @@ jobs:
       - name: Static HTML export with Nuxt
         run: ${{ steps.detect-package-manager.outputs.manager }} run generate
       - name: Fix href in index.html
-        run: sed -i 's/href="\//href=".\/g' ./playground/dist/index.html
+        run: sed -i 's#href="/#href="./#g' ./playground/dist/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
