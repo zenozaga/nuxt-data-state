@@ -16,9 +16,7 @@ Find and replace all on all files (CMD+SHIFT+F):
 
 Simple state class helper
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/zenozaga/nuxt-data-state?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+[Online Demo](https://zenozaga.github.io/nuxt-data-state/)
  
 
 ## Quick Setup
