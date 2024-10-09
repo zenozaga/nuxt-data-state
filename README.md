@@ -11,13 +11,11 @@ Find and replace all on all files (CMD+SHIFT+F):
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
+[![License][license-src]][license-href] [![Nuxt][nuxt-src]][nuxt-href]
 
 Simple state class helper
 
 [Online Demo](https://zenozaga.github.io/nuxt-data-state/)
- 
 
 ## Quick Setup
 
@@ -35,21 +33,23 @@ yarn add nuxt-data-state
 // nuxt.config.ts
 // Nuxt 3
 
-import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
-  // This will also enable auto-imports of magic-regexp helpers
-  modules: ['nuxt-data-state'],
-})
+    // This will also enable auto-imports of magic-regexp helpers
+    modules: ['nuxt-data-state']
+});
 ```
 
 ## How to use
-
 
 ```html
 <template>
     <div>
         <DataStateProvider :state="user">
+            <template #empty>
+                <div>Empty Content</div>
+            </template>
             <template #loading>
                 <div>Loading...</div>
             </template>
@@ -64,43 +64,37 @@ export default defineNuxtConfig({
 </template>
 
 <script setup lang="ts">
-// import { DataState } from '#imports';
+    // import { DataState } from '#imports';
 
+    type User = {
+        name: string;
+    };
 
-type User = {
-    name: string
-}
+    const user = useDataStateLoading<User>();
 
+    // or
+    // const user = ref<DataState<User>>(DataState.loading());
 
-const user = useDataStateLoading<User>();
-
-// or
-// const user = ref<DataState<User>>(DataState.loading());
-
-
-
-onMounted(() => {
-
-    setTimeout(function () {
-        user.value = DataState.success({
-            name: "User " + Date.now()
-        })
-    }, 2000)
-
-})
-
+    onMounted(() => {
+        setTimeout(function () {
+            user.value = DataState.success({
+                name: 'User ' + Date.now()
+            });
+        }, 2000);
+    });
 </script>
 ```
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-data-state/latest.svg?style=flat&colorA=020420&colorB=00DC82
+
+[npm-version-src]:
+    https://img.shields.io/npm/v/nuxt-data-state/latest.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-version-href]: https://npmjs.com/package/nuxt-data-state
-
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-data-state.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-src]:
+    https://img.shields.io/npm/dm/nuxt-data-state.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-downloads-href]: https://npmjs.com/package/nuxt-data-state
-
-[license-src]: https://img.shields.io/npm/l/nuxt-data-state.svg?style=flat&colorA=020420&colorB=00DC82
+[license-src]:
+    https://img.shields.io/npm/l/nuxt-data-state.svg?style=flat&colorA=020420&colorB=00DC82
 [license-href]: https://npmjs.com/package/nuxt-data-state
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
 [nuxt-href]: https://nuxt.com

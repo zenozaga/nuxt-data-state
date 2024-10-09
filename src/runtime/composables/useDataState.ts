@@ -1,17 +1,29 @@
 // Import DataState and DataStateSuccess from types
-import { DataState } from '../data-state'
+import type { DataStateSuccess, DataStateType } from '../types'
+import { DataState } from '../types'
 
-// Function to create a loading DataState
-const useDataStateLoading = <T>() => ref(DataState.loading<T>())
+/**
+ * Function to create an empty DataState
+ * @returns {DataStateType<T>} - An empty DataState.
+ */
+export const useDataStateEmpty = <T>(): DataStateType<T> => DataState.empty()
 
-// Function to create a success DataState
-const useDataStateSuccess = <T>(data: T) => ref(DataState.success(data))
+/**
+ * Function to create a success DataState
+ * @param data - The data to pass to the success state.
+ * @returns {DataStateSuccess<T>} - A success DataState with the provided data.
+ */
+export const useDataStateSuccess = <T>(data: T): DataStateSuccess<T> => DataState.success(data)
 
-// Function to create an error DataState
-const useDataStateError = <T>(error: Error) => ref(DataState.error<T>(error))
+/**
+ * Function to create a loading DataState
+ * @returns {DataStateType<T>} - A loading DataState.
+ */
+export const useDataStateLoading = <T>(): DataStateType<T> => DataState.loading()
 
-export {
-  useDataStateLoading,
-  useDataStateSuccess,
-  useDataStateError,
-}
+/**
+ * Function to create an error DataState
+ * @param error - The error object to pass to the error state.
+ * @returns {DataStateType<T>} - An error DataState with the provided error.
+ */
+export const useDataStateError = <T>(error: Error): DataStateType<T> => DataState.error(error)

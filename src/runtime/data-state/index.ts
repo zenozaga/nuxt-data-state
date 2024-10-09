@@ -1,65 +1,108 @@
-// Define an abstract class DataState
-abstract class DataState<T> {
-  // Getter to check if the state is error
-  get isError(): boolean {
-    return this instanceof DataStateError
-  }
+// Define a discriminated union for DataState
+type DataStateType<T> =
+  | DataStateEmpty
+  | DataStateLoading
+  | DataStateSuccess<T>
+  | DataStateError
 
-  // Getter to convert to success state, throws error if not in success state
-  get asSuccess(): DataStateSuccess<T> {
-    if (this instanceof DataStateSuccess) {
-      return this
-    }
-    throw new TypeError('DataState is not a success state')
-  }
+type DataStateState = 'empty' | 'loading' | 'success' | 'error'
 
-  // Getter to convert to error state, throws error if not in error state
-  get asError(): DataStateError<T> {
-    if (this instanceof DataStateError) {
-      return this
-    };
-    throw new TypeError('DataState is not an error state')
-  }
-
-  // Factory method to create a success state
-  static success<T>(data: T): DataStateSuccess<T> {
-    return new DataStateSuccess(data)
-  }
-
-  // Factory method to create a loading state
-  static loading<T>(): DataStateLoading<T> {
-    return new DataStateLoading()
-  }
-
-  // Factory method to create an error state
-  static error<T>(error: Error): DataStateError<T> {
-    return new DataStateError(error)
-  }
+/**
+ * Represents an empty state in the data flow.
+ */
+class DataStateEmpty {
+  // Discriminant property for type narrowing with 'as const'
+  readonly state: DataStateState = 'empty' as const
 }
 
-// Define a class for loading state, extending DataState
-class DataStateLoading<T> extends DataState<T> {}
+/**
+ * Represents a loading state in the data flow.
+ */
+class DataStateLoading {
+  // Discriminant property for type narrowing with 'as const'
+  readonly state: DataStateState = 'loading' as const
+}
 
-// Define a class for error state, extending DataState
-class DataStateError<T> extends DataState<T> {
+/**
+ * Represents an error state in the data flow.
+ * Stores error information and an optional error code.
+ */
+class DataStateError {
+  // Discriminant property for type narrowing with 'as const'
+  readonly state: DataStateState = 'error' as const
   error: Error
   code?: number
 
-  constructor(error: Error) {
-    super() // Call the constructor of the base class
+  /**
+   * Creates an instance of DataStateError.
+   * @param error The error object representing the failure.
+   * @param code Optional error code to provide additional context.
+   */
+  constructor(error: Error, code?: number) {
     this.error = error
+    this.code = code
   }
 }
 
-// Define a class for success state, extending DataState
-class DataStateSuccess<T> extends DataState<T> {
+/**
+ * Represents a success state in the data flow.
+ * Stores the successful value of type T.
+ */
+class DataStateSuccess<T> {
+  // Discriminant property for type narrowing with 'as const'
+  readonly state: DataStateState = 'success' as const
   value: T
 
+  /**
+   * Creates an instance of DataStateSuccess.
+   * @param value The successful value of type T.
+   */
   constructor(value: T) {
-    super() // Call the constructor of the base class
     this.value = value
   }
 }
 
-// Export the classes
-export { DataState, DataStateLoading, DataStateError, DataStateSuccess }
+/**
+ * Factory functions for creating instances of DataState.
+ * Use these static methods to instantiate different data states.
+ */
+const DataState = {
+  /**
+   * Creates an empty state.
+   * @returns A new instance of DataStateEmpty.
+   */
+  empty: (): DataStateEmpty => new DataStateEmpty(),
+
+  /**
+   * Creates a loading state.
+   * @returns A new instance of DataStateLoading.
+   */
+  loading: (): DataStateLoading => new DataStateLoading(),
+
+  /**
+   * Creates a success state.
+   * @param data The value of type T representing the success.
+   * @returns A new instance of DataStateSuccess.
+   */
+  success: <T>(data: T): DataStateSuccess<T> => new DataStateSuccess(data),
+
+  /**
+   * Creates an error state.
+   * @param error The error object representing the failure.
+   * @param code Optional error code to provide additional context.
+   * @returns A new instance of DataStateError.
+   */
+  error: (error: Error, code?: number): DataStateError =>
+    new DataStateError(error, code),
+}
+
+// Export the DataState classes and factory functions
+export {
+  DataState,
+  DataStateEmpty,
+  DataStateLoading,
+  DataStateError,
+  DataStateSuccess,
+  type DataStateType,
+  type DataStateState,
+}
