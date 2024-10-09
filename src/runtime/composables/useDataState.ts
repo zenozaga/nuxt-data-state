@@ -1,6 +1,6 @@
 // Import DataState and DataStateSuccess from types
 import type { DataStateSuccess, DataStateType } from '../types'
-import { DataState } from '../types'
+import { DataState } from '../data-state'
 
 /**
  * Function to create an empty DataState

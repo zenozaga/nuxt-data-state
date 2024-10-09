@@ -68,6 +68,14 @@
           </div>
         </template>
 
+        <template #empty>
+          <div class="p-4">
+            <p class="text-center text-gray-500">
+              Empty state
+            </p>
+          </div>
+        </template>
+
         <template #loading>
           <LoadingState />
         </template>
@@ -87,15 +95,16 @@
 </template>
 
 <script setup lang="ts">
+import type { DataStateType } from '../src/module'
 import type { User } from './types'
 import TableState from './component/TableState.vue'
 import ErrorState from './component/ErrorState.vue'
 import LoadingState from './component/LoadingState.vue'
 import { DataState } from '#imports'
 
-const statesNames = ['loading', 'error', 'success']
+const statesNames = ['empty', 'loading', 'error', 'success']
 const stateName = ref('none')
-const user = ref<DataState<User[]> | null>(null)
+const user = ref<DataStateType<User[]>>(DataState.empty())
 
 /// generate user
 const generateUsers = (length: number = 7): User[] => {
@@ -142,7 +151,7 @@ const generateError = async () => {
 }
 
 // Start with success state
-onMounted(() => {
-  loadUsers()
-})
+// onMounted(() => {
+//   loadUsers()
+// })
 </script>

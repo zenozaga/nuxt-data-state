@@ -3,7 +3,7 @@
     <!-- Render the default slot -->
     <slot
       name="default"
-      :data="state"
+      :data="(state as DataStateType<T>)"
     />
 
     <slot
@@ -21,24 +21,21 @@
     <slot
       v-if="state.state === 'error'"
       name="error"
-      :error="((state as DataStateError).error)"
+      :error="(state.error as Error)"
+      :code="state.code"
     />
 
     <!-- Render the success slot -->
     <slot
       v-if="state.state === 'success'"
       name="success"
-      :data="((state as DataStateSuccess<T>).value as T)"
+      :data="(state.value as T)"
     />
   </div>
 </template>
 
 <script setup lang="ts" generic="T">
-import type {
-  DataStateSuccess,
-  DataStateError,
-  DataStateType,
-} from '../data-state'
+import type { DataStateType } from '../types'
 
 // Define props interface to type-check the state
 interface IDataStateProvider {
